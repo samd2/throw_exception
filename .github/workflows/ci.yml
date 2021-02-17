@@ -437,6 +437,7 @@ jobs:
           CMAKE_SUBDIR: ${{ matrix.cmake_subdir }}
           CMAKE_INSTALL: ${{ matrix.cmake_install }}
           TRAVIS_BRANCH: ${{ github.base_ref }}
+          TRAVIS_OS_NAME: "linux"
         run: |
           echo '==================================> SETUP'
           if [ -n "$GHA_CONTAINER" ]; then
@@ -553,7 +554,7 @@ jobs:
 
           echo '==================================> INSTALL'
 
-          ln -s $DRONE_BUILD_DIR ../throw_exception;
+          ln -s $TRAVIS_BUILD_DIR ../throw_exception;
           BOOST_BRANCH=develop && [ "$TRAVIS_BRANCH" == "master" ] && BOOST_BRANCH=master || true
           git clone -b $BOOST_BRANCH https://github.com/boostorg/assert.git ../assert
           git clone -b $BOOST_BRANCH https://github.com/boostorg/config.git ../config
@@ -654,6 +655,7 @@ jobs:
           CMAKE_SUBDIR: ${{ matrix.cmake_subdir }}
           CMAKE_INSTALL: ${{ matrix.cmake_install }}
           TRAVIS_BRANCH: ${{ github.base_ref }}
+          TRAVIS_OS_NAME: "osx"
         run: |
           echo '==================================> SETUP'
           set -ex
